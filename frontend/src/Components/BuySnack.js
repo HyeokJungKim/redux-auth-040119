@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import {fetchSnackIDToBackend} from '../Redux/index'
 
 class BuySnack extends Component {
 
@@ -13,6 +14,10 @@ class BuySnack extends Component {
     })
   }
 
+  handleBuy = () => {
+    this.props.fetchSnackIDToBackend(this.state.snackID)
+  }
+
   render() {
     let {snackID} = this.state
     return (
@@ -21,7 +26,7 @@ class BuySnack extends Component {
           <option value={0} disabled>Choose a Snack to Buy!</option>
           {this.props.snacks.map(snack => <option key={snack.id} value={snack.id}>{snack.name}</option>)}
         </select>
-        <button disabled={!(snackID > 0)} >Buy Snack!</button>
+        <button disabled={!(snackID > 0)} onClick={this.handleBuy} >Buy Snack!</button>
       </div>
     );
   }
@@ -29,7 +34,7 @@ class BuySnack extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {snacks: state.snack.all}
 }
 
-export default connect(mapStateToProps)(BuySnack);
+export default connect(mapStateToProps, {fetchSnackIDToBackend})(BuySnack);

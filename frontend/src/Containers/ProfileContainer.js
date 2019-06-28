@@ -12,7 +12,7 @@ const ProfileContainer = (props) => (
 );
 
 const mapStateToProps = (state) => {
-  return {}
+  return {username: state.user.username, money: state.user.money}
 }
 
 export default connect(mapStateToProps)(ProfileContainer);

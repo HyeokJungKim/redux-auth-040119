@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {fetchToBackendTheLoginInformation} from '../Redux/index'
 
 class LoginForm extends Component {
 
@@ -15,6 +17,9 @@ class LoginForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    const loginInformation = this.state
+    this.props.fetchToBackendTheLoginInformation(loginInformation)
+    this.props.history.push("/profile")
   }
 
   render() {
@@ -39,4 +44,21 @@ class LoginForm extends Component {
 
 }
 
-export default LoginForm;
+export default connect(null, {fetchToBackendTheLoginInformation})(LoginForm);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

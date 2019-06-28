@@ -13,7 +13,7 @@ const UserSnacks = (props) => (
 );
 
 const mapStateToProps = (state) => {
-  return {}
+  return {snacks: state.user.snacks}
 }
 
 export default connect(mapStateToProps)(UserSnacks);

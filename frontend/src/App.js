@@ -11,10 +11,16 @@ import LoginForm from './Components/LoginForm'
 import SnackContainer from './Containers/SnackContainer'
 import ProfileContainer from './Containers/ProfileContainer'
 
+
+import {sendTokenBackToPersist} from './Redux/index'
+
 class App extends React.Component{
 
   componentDidMount() {
     this.props.fetchSnacks()
+    if (localStorage.getItem("token")) {
+      this.props.sendTokenBackToPersist(localStorage.getItem("token"))
+    }
   }
 
   render(){
@@ -29,6 +35,8 @@ class App extends React.Component{
         <br/>
         <Link to="/snacks">Snacks</Link>
         <br/>
+        <Link to="/profile">Profile</Link>
+
         <Switch>
           <Route path='/login' render={(routerProps) => <LoginForm {...routerProps}/>}/>
           <Route path='/snacks' render={(routerProps) => <SnackContainer {...routerProps}/>}/>
@@ -43,4 +51,15 @@ const mapStateToProps = (state) => {
   return {}
 }
 
-export default connect(mapStateToProps, {fetchSnacks})(App);
+
+export default connect(mapStateToProps, {fetchSnacks, sendTokenBackToPersist})(App);
+
+
+
+
+
+
+
+
+
+//

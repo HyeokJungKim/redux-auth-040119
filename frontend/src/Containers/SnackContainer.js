@@ -11,8 +11,10 @@ const SnackContainer = (props) => (
   </div>
 );
 
-const mapStateToProps = () => {
-  return {}
+const mapStateToProps = (state) => {
+  return {
+    snacks: state.snack.all
+  }
 }
 
 export default connect(mapStateToProps)(SnackContainer);
